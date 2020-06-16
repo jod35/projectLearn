@@ -5,3 +5,7 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, 'blog/index.html')
+
+
+def signup(request):
+    return render(request, 'blog/signup.html')

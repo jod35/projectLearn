@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Learn |{{title}}</title>
-  </head>
-  <body>
-    <h1>Welcome</h1>
-  </body>
-</html>
+{% extends 'blog/base.html' %} {% block body %}
+<div class="showcase">
+  <h1 class="lg-text">Welcome To Project Learn</h1>
+  <h3 class="subtext">A platform where we share ideas</h3>
+  <br />
+  <a href="" class="mybtn btn-lg">get started</a>
+</div>
+{% endblock body %}
