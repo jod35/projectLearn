@@ -22,3 +22,26 @@ header {
   color: dodgerblue;
   padding: 20px;
 }
+.home {
+  display: flex;
+  padding: 20px;
+}
+.home-page{
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+.post-form{
+  width: 80%;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: dodgerblue;
+}
+.sidebar{
+  margin-top: 100px;
+  margin-left: 100px;
+}
+.recent{
+  width: 80%;
+  padding: 30px;
+}

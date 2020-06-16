@@ -1,12 +1,29 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, PostCreationForm
+from .models import Post
 from django.contrib import messages
+from django.contrib.auth import user_logged_in
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'blog/index.html')
+    posts=Post.objects.all()
+
+
+    if request.method =="POST":
+        form=PostCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=False)
+            
+
+            return redirect('blog:home')
+    context={
+        'posts':posts
+    }
+    return render(request, 'blog/index.html',context)
 
 
 def signup(request):
@@ -27,3 +44,21 @@ def signup(request):
         'message': messages
     }
     return render(request, 'blog/signup.html', context)
+
+
+@login_required
+def create_post(request):
+    form = PostCreationForm()
+
+    if request.method=='POST':
+        form=PostCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            print(user_logged_in)
+            messages.success(request,'Your Post Is Now Live!')
+            return redirect('blog:home')
+    context = {
+       'form': form
+    }
+    return render(request, 'blog/createpost.html', context)

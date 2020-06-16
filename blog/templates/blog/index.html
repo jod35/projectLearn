@@ -1,4 +1,29 @@
-{% extends 'blog/base.html' %} {% block body %}
+{% extends 'blog/base.html' %} 
+{% block body %}
+ {% if user.is_authenticated %}
+ <div class="home">
+    <div class="recent">
+      <h1>Recent Posts</h1>
+      
+      {% for post in posts %}
+        <div class="jumbotron">
+          <div class="head-text">{{post.title}} by {{post.author}}</div>
+          <small class="post-time">{{post.created}}</small>
+        </div>
+      {% endfor %}
+        
+    </div>
+  <div class="side-bar">
+    <ul class="list-group">
+      <li class="list-group-item"><a href="{% url 'blog:add_post' %}">Create A Post</a></li>
+      <li class="list-group-item"><a href="">Notifications</a></li>
+      <li class="list-group-item"><a href="">Settings</a></li>
+      <li class="list-group-item"><a href="">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+ </div>
+{% else %}
 <div class="showcase jumbotron">
   <h1 class="lg-text">Welcome To Project Learn</h1>
   <h3 class="subtext">A platform where we share ideas</h3>
@@ -7,4 +32,4 @@
     >Get started</a
   >
 </div>
-{% endblock body %}
+{% endif %} {% endblock body %}
