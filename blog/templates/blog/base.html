@@ -7,17 +7,37 @@
 
     <title>Project Learn</title>
     <link rel="stylesheet" href="{% static 'blog/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/bootstrap.min.css' %}" />
   </head>
   <body>
     <header>
-      <h1 class="logo">Project Learn</h1>
-      <ul class="nav-bar">
-        <li class="nav-bar-item"><a href="{% url 'blog:home' %}">Home</a></li>
-        <li class="nav-bar-item"><a href="{% url 'blog:login' %}">Login</a></li>
-        <li class="nav-bar-item">
-          <a href="{% url 'blog:register' %}">Sign Up</a>
-        </li>
-      </ul>
+      <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <a class="navbar-brand" href="{%url 'blog:home' %}">Project Learn</a>
+        <button
+          class="navbar-toggler d-lg-none"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapsibleNavId"
+          aria-controls="collapsibleNavId"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        ></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'blog:home' %}"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'blog:login' %}">Login</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'blog:register' %}">Sign Up</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
     {% block body %} {% endblock body %}

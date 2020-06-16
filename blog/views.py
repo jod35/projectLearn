@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import UserRegisterForm
 
 # Create your views here.
 
@@ -8,4 +9,9 @@ def index(request):
 
 
 def signup(request):
-    return render(request, 'blog/signup.html')
+    form = UserRegisterForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'blog/signup.html', context)
