@@ -23,3 +23,6 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-publish']
+
+    def __str__(self):
+        return f"{self.title} by {self.author}"
