@@ -68,3 +68,11 @@ def create_post(request):
     return render(request, 'blog/createpost.html', context)
 
 
+#page for an individual post
+def post_details(request,title):
+
+    post=Post.objects.get(title=title)
+    context={
+        'post':post,
+    }
+    return render(request,'blog/post_detail.html',context)
