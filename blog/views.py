@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .forms import UserRegisterForm, PostCreationForm
 from .models import Post
 from django.contrib import messages
-from django.contrib.auth import user_logged_in
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -54,11 +53,18 @@ def create_post(request):
         form=PostCreationForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            print(user_logged_in)
+            obj=form.save(commit=False)
+            obj.author=request.user
+            obj.save()
+
+            form.save_m2m()
             messages.success(request,'Your Post Is Now Live!')
             return redirect('blog:home')
+
+
     context = {
        'form': form
     }
     return render(request, 'blog/createpost.html', context)
+
+

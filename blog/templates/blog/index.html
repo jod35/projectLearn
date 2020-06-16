@@ -3,6 +3,11 @@
  {% if user.is_authenticated %}
  <div class="home">
     <div class="recent">
+      {% if messages %}
+        {% for message in messages %}
+            <p class="alert alert-{{message.tags}}">{{message}}</p>
+        {% endfor %}
+      {% endif %}
       <h1>Recent Posts</h1>
       
       {% for post in posts %}
@@ -33,3 +38,4 @@
   >
 </div>
 {% endif %} {% endblock body %}
+

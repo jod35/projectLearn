@@ -13,4 +13,6 @@ class UserRegisterForm(UserCreationForm):
 class PostCreationForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'body', 'status','author')
+        fields = ('tags','title', 'body', 'status')
+
+        
