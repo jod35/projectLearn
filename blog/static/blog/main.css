@@ -6,6 +6,10 @@ header {
   display: flex;
   justify-content: space-between;
 }
+header{
+  position: fixed;
+  width: 100%;
+}
 
 .logo {
   font-weight: bold;
@@ -44,4 +48,8 @@ header {
 .recent{
   width: 80%;
   padding: 30px;
+}
+
+.comment-form{
+  display: none;
 }

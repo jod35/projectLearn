@@ -11,6 +11,26 @@
     {% endfor %}
 
     <p>{{post.body}}</p>
+    
+    {% if post.author == user %}
+        <a href="" class="btn btn-success">Update</a>
+        <a href="" class="btn btn-danger">Delete</a>
+        {% else %}
+        <button class="btn btn-info" id="comment-btn">Comment</button>
+        <br>
+        <br>
+        <div class="comment-form" id="comment-form">
+            <form action="" method="post">
+              <div class="form-group">
+                <p>Please leave your comment</p>
+                <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+                <br>
+                <input type="submit" value="Comment" class="btn btn-primary">
+              </div>
+            </form>
+        </div>
+    {% endif %}
+      
          
   </div>
 
