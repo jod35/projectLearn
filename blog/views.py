@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, PostCreationForm
-from .models import Post
+from .forms import UserRegisterForm, PostCreationForm,CommentForm
+from .models import Post,Comment
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -72,7 +72,26 @@ def create_post(request):
 def post_details(request,title):
 
     post=Post.objects.get(title=title)
+    comments=Comment.objects.filter(author=request.user)
+    form=CommentForm()
+
+    if request.method =='POST':
+        form=CommentForm(request.POST)
+
+        if form.is_valid():
+            obj=form.save(commit=False)
+
+            obj.author=request.user
+            obj.post=post
+
+            obj.save()
+
+            return redirect(f'/posts/{post.title}')
+
+
     context={
         'post':post,
+        'form':form,
+        'comments':comments
     }
     return render(request,'blog/post_detail.html',context)
