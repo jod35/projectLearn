@@ -69,10 +69,12 @@ def create_post(request):
 
 
 #page for an individual post
+
+@login_required
 def post_details(request,title):
 
     post=Post.objects.get(title=title)
-    comments=Comment.objects.filter(author=request.user)
+    comments=Comment.objects.filter(author=request.user).order_by('-commented_on')
     form=CommentForm()
 
     if request.method =='POST':
