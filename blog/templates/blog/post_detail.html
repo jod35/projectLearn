@@ -10,6 +10,8 @@
         <a href="">{{tag}}</a>,
     {% endfor %}
 
+    
+
     <p>{{post.body}}</p>
     
     {% if post.author == user %}
@@ -26,12 +28,13 @@
                   {% csrf_token %}
                   {{form|crispy}}
                 <input type="submit" value="Comment" class="btn btn-primary">
+                <a href="#" class="btn btn-success cancel-btn">Cancel</a>
               </div>
             </form>
         </div>
     {% endif %}
 
-    <h3>Comments</h3>
+    <h3>{{comments.count}} Comments</h3>
     
     {% for comment in comments %}
       <div class="comment">
