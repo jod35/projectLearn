@@ -23,7 +23,7 @@ So do a ` git clone https://github.com/jod35/projectLearn.git `
 `cd projectLearn && python3 manage.py runserver`
 
 ## Live Project
-Check out the proect in production [here](https://projectlearnliveapp.herokuapp.com).
+Check out the project in production [here](https://projectlearnliveapp.herokuapp.com).
 
 ## Author
 [Ssali Jonathan](https://github.com/jod35)
