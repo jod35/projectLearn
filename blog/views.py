@@ -109,8 +109,17 @@ class PostUpdateView(UpdateView):
 
 
 def user_profile(request,username):
+
+    user=User.objects.filter(username=username).first()
+    posts=Post.objects.filter(author=user).all()[:4]
+    
+    for post in posts:
+        comments=Comment.objects.filter(post=post).order_by('-commented_on')
+
     context={
-        'user':User.objects.filter(username=username).first()
+        'posts':posts,
+        'user':user,
+        'comments':comments
     }
     return render(request,'blog/profile.html',context)
 
