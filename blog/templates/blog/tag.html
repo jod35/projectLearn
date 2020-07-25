@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %} 
+
+{% block body %}
+ {% if user.is_authenticated %}
+ <div class="home">
+    <div class="recent">
+      {% if messages %}
+        {% for message in messages %}
+            <p class="alert alert-{{message.tags}}">{{message}}</p>
+        {% endfor %}
+      {% endif %}
+      <h1>Recent Posts about "{{tag}}"</h1>
+      
+      {% for post in posts %}
+        <div class="post">
+          <div class="head-text">
+            <a href="/posts/{{post.title}}/"><h3>{{post.title}}</h3></a> by <a href="/user_profile/{{post.author.id}}/">{{post.author}}</a></div>
+            <small class="post-time">{{post.created}}</small>
+            <!-- <p>{{ comments.count }} comments</p>     -->
+        </div>
+        <br>
+      {% endfor %}
+        
+    </div>
+  <div class="side-bar">
+    <ul class="list-group">
+      <li class="list-group-item"><a href="{% url 'blog:add_post' %}">Create A Post</a></li>
+      <li class="list-group-item"><a href="">Notifications</a></li>
+      <li class="list-group-item"><a href="">Settings</a></li>
+      <li class="list-group-item"><a href="">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+ </div>
+{% else %}
+<div class="showcase jumbotron">
+  <h1 class="lg-text">Welcome To Project Learn</h1>
+  <h3 class="subtext">A platform where we share ideas</h3>
+  <br />
+  <a href="{% url 'blog:register' %}" class="btn btn-success btn-lg"
+    >Get started</a
+  >
+</div>
+{% endif %} {% endblock body %}
+

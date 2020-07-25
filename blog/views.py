@@ -162,3 +162,14 @@ class ProfileUpdateView(UpdateView):
     model=Profile
     success_url='/'
     fields=['bio']
+
+@login_required
+def posts_with_tag(request,tag):
+
+    posts=Post.objects.filter(tags__name__in=[tag])
+
+    context={
+        'posts':posts,
+        'tag':tag
+    }
+    return render(request,'blog/tag.html',context)
