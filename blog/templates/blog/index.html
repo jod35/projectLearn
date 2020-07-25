@@ -14,8 +14,9 @@
       {% for post in posts %}
         <div class="post">
           <div class="head-text">
-            <a href="/posts/{{post.title}}/"><h3>{{post.title}}</h3></a> by <a href="/user_profile/{{post.author.username}}/">{{post.author}}</a></div>
-          <small class="post-time">{{post.created}}</small>    
+            <a href="/posts/{{post.title}}/"><h3>{{post.title}}</h3></a> by <a href="/user_profile/{{post.author.id}}/">{{post.author}}</a></div>
+            <small class="post-time">{{post.created}}</small>
+            <p>{{ comments.count }} comments</p>    
         </div>
         <br>
       {% endfor %}

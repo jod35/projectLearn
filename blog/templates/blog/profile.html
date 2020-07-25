@@ -10,9 +10,16 @@
             </p>
         {% else %}
             <p>No bio yet</p>
+            {% if user == request.user %}
             <p>Please <a href="{% url 'blog:create_bio' %}">Create One</a></p>
+            {% endif %}
         {% endif %}
-        <a href="/update_bio/{{user.profile.id}}/">Edit Your Profile</a>
+        
+        
+        {% if user == request.user %}
+            <a href="/update_bio/{{user.id}}">Edit Bio</a>
+        {% endif %}
+            
     </div>
 
     <div class="posts">
@@ -20,7 +27,7 @@
         {% for post in posts %}
             <div class="post">
                     <div class="head-text">
-                      <a href="/posts/{{post.title}}/"><h3>{{post.title}}</h3></a> by <a href="/user_profile/{{post.author.username}}/">{{post.author}}</a></div>
+                      <a href="/posts/{{post.title}}/"><h3>{{post.title}}</h3></a> by <a href="/user_profile/{{post.author.id}}/">{{post.author}}</a></div>
                     <small class="post-time">{{post.created}}</small>    
                 <p>{{comments.count}} comments</p>
             </div>

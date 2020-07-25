@@ -13,7 +13,7 @@ urlpatterns = [
     path('create_post',views.create_post,name='add_post'),
     path('posts/<str:title>/',views.post_details,name='post_details'),
     path('update_post/<pk>/',views.PostUpdateView.as_view(),name='update_post'),
-    path('user_profile/<str:username>/',views.user_profile,name='user_profile'),
+    path('user_profile/<int:id>/',views.user_profile,name='user_profile'),
     path('update_bio/<pk>/',views.ProfileUpdateView.as_view(),name='update_bio'),
     path('create_bio/',views.create_user_bio,name='create_bio'),
 

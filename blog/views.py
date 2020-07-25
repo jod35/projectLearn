@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 
 def index(request):
     posts=Post.objects.all()
+    for post in posts:
+        comments=Comment.objects.filter(post=post).order_by('-commented_on')
+        
 
 
     if request.method =="POST":
@@ -22,7 +25,8 @@ def index(request):
 
             return redirect('blog:home')
     context={
-        'posts':posts
+        'posts':posts,
+        'comments':comments
     }
     return render(request, 'blog/index.html',context)
 
@@ -107,18 +111,18 @@ class PostUpdateView(UpdateView):
     success_url='/'
     fields=['title','body']
 
+@login_required
+def user_profile(request,id):
 
-def user_profile(request,username):
-
-    user=User.objects.filter(username=username).first()
-    posts=Post.objects.filter(author=user).all()[:4]
+    user_pro=User.objects.filter(id=id).first()
+    posts=Post.objects.filter(author=user_pro).all()[:4]
     
     for post in posts:
         comments=Comment.objects.filter(post=post).order_by('-commented_on')
 
     context={
         'posts':posts,
-        'user':user,
+        'user':user_pro,
         'comments':comments
     }
     return render(request,'blog/profile.html',context)
@@ -130,7 +134,7 @@ def user_profile(request,username):
 #     fields=['bio']
 #     success_url='/'
 
-
+@login_required
 def create_user_bio(request):
     form=BioCreationForm()
 
