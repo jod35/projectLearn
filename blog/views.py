@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import UserRegisterForm, PostCreationForm,CommentForm
-from .models import Post,Comment
+from .models import Post,Comment,Profile
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView
@@ -113,3 +113,14 @@ def user_profile(request,username):
         'user':User.objects.filter(username=username).first()
     }
     return render(request,'blog/profile.html',context)
+
+
+class BioUpdateView(UpdateView):
+    model=Profile
+    template_name='blog/updatebio.html'
+    fields=['bio']
+    success_url='/'
+
+
+def create_user_bio(request):
+    return render(request,'blog/createbio.html')
