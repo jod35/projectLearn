@@ -3,6 +3,8 @@ from .forms import UserRegisterForm, PostCreationForm,CommentForm
 from .models import Post,Comment
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.generic import UpdateView
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -97,3 +99,17 @@ def post_details(request,title):
         'comments':comments
     }
     return render(request,'blog/post_detail.html',context)
+
+
+class PostUpdateView(UpdateView):
+    model=Post
+    template_name='blog/updatepost.html'
+    success_url='/'
+    fields=['title','body']
+
+
+def user_profile(request,username):
+    context={
+        'user':User.objects.filter(username=username).first()
+    }
+    return render(request,'blog/profile.html',context)

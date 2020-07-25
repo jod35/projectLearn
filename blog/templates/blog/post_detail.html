@@ -15,7 +15,7 @@
     <p>{{post.body}}</p>
     
     {% if post.author == user %}
-        <a href="" class="btn btn-success">Update</a>
+        <a href="/update_post/{{post.pk}}" class="btn btn-success">Update</a>
         <a href="" class="btn btn-danger">Delete</a>
         {% else %}
         <button class="btn btn-info" id="comment-btn">Comment</button>
@@ -38,7 +38,7 @@
     
     {% for comment in comments %}
       <div class="comment">
-        <h4>{{comment.author}}</h4>
+        <a href="/user_profile/{{comment.author.username}}"><h4>{{comment.author}}</h4></a>
         {{comment.body}}
       </div>
     
