@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, PostCreationForm,CommentForm
+from .forms import UserRegisterForm, PostCreationForm,CommentForm,BioCreationForm
 from .models import Post,Comment,Profile
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -123,4 +123,21 @@ class BioUpdateView(UpdateView):
 
 
 def create_user_bio(request):
-    return render(request,'blog/createbio.html')
+    form=BioCreationForm()
+
+    if request.method == 'POST':
+        form=BioCreationForm(request.POST)
+
+        if form.is_valid():
+            obj=form.save(commit=False)
+            obj.user=request.user
+
+            obj.save()
+
+            return redirect('/user_profile/{}'.format(request.user.username))
+
+
+    context={
+        'form':form
+    }
+    return render(request,'blog/createbio.html',context)
