@@ -115,11 +115,11 @@ def user_profile(request,username):
     return render(request,'blog/profile.html',context)
 
 
-class BioUpdateView(UpdateView):
-    model=Profile
-    template_name='blog/updatebio.html'
-    fields=['bio']
-    success_url='/'
+# class BioUpdateView(UpdateView):
+#     model=Profile
+#     template_name='blog/updatebio.html'
+#     fields=['bio']
+#     success_url='/'
 
 
 def create_user_bio(request):
@@ -141,3 +141,11 @@ def create_user_bio(request):
         'form':form
     }
     return render(request,'blog/createbio.html',context)
+
+
+
+class ProfileUpdateView(UpdateView):
+    template_name='blog/updatebio.html'
+    model=Profile
+    success_url='/'
+    fields=['bio']

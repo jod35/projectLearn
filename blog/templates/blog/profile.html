@@ -12,7 +12,7 @@
             <p>No bio yet</p>
             <p>Please <a href="{% url 'blog:create_bio' %}">Create One</a></p>
         {% endif %}
-        <a href="/update_bio/{{user.id}}/">Edit Your Bio</a>
+        <a href="/update_bio/{{user.profile.id}}/">Edit Your Profile</a>
     </div>
    </div>
 {% endblock body %}

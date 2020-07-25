@@ -7,7 +7,9 @@
         <h1 class="">Update Your Bio</h1>
           <form action="" method="post">
               {% csrf_token %}
-              {{form|crispy}}
+              <textarea name="bio" id="" cols="30" rows="10" class="form-control">
+                {{profile.to_update.bio}}
+              </textarea>
               <input type="submit" value="Post" class="btn btn-primary">
           </form>
       </div>
